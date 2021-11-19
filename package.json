@@ -7,8 +7,8 @@
     "test": "test",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
-    "build": "webpack",
-     "proxy": "https://api.hnpwa.com/v0/"
+    "build": "webpack"
+     
   },
   "author": "",
   "license": "ISC",
