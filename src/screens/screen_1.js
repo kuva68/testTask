@@ -5,6 +5,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/Button'
 import {fetchNews,setStop} from '../redusers/newsReduser'
 import './screens.css'
+import { compareArr } from "../tools/sort";
   export default function NewsScreen(){
       const footerRef = useRef(null)
       const dispatch = useDispatch()
@@ -30,7 +31,7 @@ import './screens.css'
         const sortByDate =()=>{
             setSortMode(sortMode === '1'? '2': '1')
         }
-        const [sortedArr,setSortedArr] = useState(newsArr)
+     
         const fetchNewList = ()=>{
             dispatch(setStop(true))
             dispatch(fetchNews(list))
@@ -44,66 +45,7 @@ import './screens.css'
                 fetchNewList()
               setTimeout(()=>dispatch(setStop(false)))
             }}
-        useEffect(()=>{
-          function sort(n){
-            switch (n) {
-                case '1':
-                     let tmpArr1 = [...newsArr]  
-                     tmpArr1.sort((a,b)=>{
-                        return a.time - b.time
-                    }) 
-                  setSortedArr(tmpArr1);
-                  break;
-                case '2':
-                    let newArr2 = [...newsArr]
-                       newArr2.sort((a,b)=>{
-                        return b.time - a.time
-                    })  
-                    setSortedArr(newArr2);
-                    break;
-                case '3':
-                    let newArr3 = [...newsArr]
-                         newArr3.sort((a,b)=>{
-                        if(a.title > b.title) return 1
-                        if(a.title < b.title) return -1
-                        return 0
-                    })  
-                    setSortedArr(newArr3);
-                    break;
-                    case '4':
-                        let newArr4 = [...newsArr]
-                           newArr4.sort((a,b)=>{
-                            if(a.title > b.title) return -1
-                            if(a.title < b.title) return  1
-                            return 0
-                        })  
-                        setSortedArr(newArr4);
-                        break;
-                        case '5':
-                            let newArr5 = [...newsArr]
-                               newArr5.sort((a,b)=>{
-                                if(a.domain > b.domain) return 1
-                                if(a.domain < b.domain) return -1
-                                return 0
-                            })  
-                            setSortedArr(newArr5);
-                            break;
-                        case '6':
-                             let newArr6 = [...newsArr]
-                                 newArr6.sort((a,b)=>{
-                                 if(a.domain > b.domain) return -1
-                                 if(a.domain < b.domain) return  1
-                                    return 0
-                                })  
-                            setSortedArr(newArr6);
-                              break;
-                default:
-                  return newsArr;
-              }
-          }
-          sort(sortMode)
-        },[sortMode,newsArr])
-
+        
         useEffect(()=>{
              window.addEventListener('scroll',callback)           
                
@@ -144,7 +86,8 @@ import './screens.css'
            </tr>
          </thead>
          <tbody>
-           {sortedArr?.length > 0&&sortedArr.map((el,i)=>{
+           { newsArr?.length > 0&&newsArr.slice(0).sort(compareArr[sortMode]).map((el,i)=>{
+              
                return (
              <tr className = 'w-100'key={el.id+''+ i}>
                <td className = 'd-none d-sm-table-cell firstCol'>
