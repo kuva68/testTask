@@ -1,0 +1,68 @@
+.main{
+    width: 100vw;
+    min-height: 100vh;
+}
+.tableTitle{
+    position: relative;
+    cursor: pointer;
+    padding-left: 10px;
+    text-align: center;
+    
+}
+
+.firstCol{
+    width:  12rem;
+    font-size: 0.8rem;
+    max-height: 3rem;
+    overflow: hidden;
+}
+.secondCol{
+    width: 25rem;
+    font-size: 0.8rem;
+    text-decoration: none;    
+    text-overflow: ellipsis;
+    max-height: 3rem;
+    overflow: hidden;
+}
+.td-none{
+    text-decoration: none;
+}
+.sortDiv{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    justify-content: space-around;
+    transition: all 0.3s;
+    flex-direction: column-reverse;
+    padding: 5px;
+}
+.sortSpan{
+    font-size: 0.6rem;
+    color: #c5c0c0;
+    line-height: 0.7rem;
+}
+.maxH-3{
+    max-height: 3rem;
+    text-overflow: ellipsis;
+    line-height: 0.9rem;
+    overflow: hidden;
+}
+.floatBtn{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    font-size: 0.7rem;
+    position: fixed;
+    right: 2rem;
+    bottom: 4rem;
+    overflow: hidden;
+    opacity: 0.5;
+    box-shadow: -2px 2px 2px 1px rgba(0, 0, 255, .2);
+}
+.nav{
+    cursor: pointer;
+}
+.btop-w{
+    border-top-color: white;
+}
