@@ -27,7 +27,7 @@ export const NewestReduser = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchNewest.fulfilled, (state, action) => {
-     console.log(current(state))
+     
       return {...state,newestArr: [...state.newestArr,...action.payload],isLoading: false, errorMessage: '',list: state.list + 1}
      
     }),
