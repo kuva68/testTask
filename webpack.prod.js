@@ -20,7 +20,7 @@ module.exports = {
    
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
      path: path.resolve(__dirname, 'dist'),
      clean: true,
     
@@ -54,7 +54,10 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: './index.html',
+      template: './public/index.html',
+    }),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
       exclude: ['bundle.js'],
