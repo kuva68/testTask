@@ -1,6 +1,14 @@
 .main{
     width: 100vw;
     min-height: 100vh;
+    position: relative;
+    animation: routing1 1.5s ease-out   normal forwards;
+}
+.main1{
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    animation: routing2 1.5s ease-out   normal forwards;
 }
 .tableTitle{
     position: relative;
@@ -65,4 +73,33 @@
 }
 .btop-w{
     border-top-color: white;
+    
+}
+@keyframes routing1 {
+    0%{
+        transform:perspective(500px) translate3d(-110vw,0,100px);
+        opacity: 0;
+    }
+    15%{
+        transform:perspective(0px) translate3d(0vw,0px,0px);
+        opacity: 0.35;
+    }
+    100%{
+        transform:perspective(0px) translateX(0vw,0px,0px);
+        opacity: 1;
+    }
+}
+@keyframes routing2 {
+    from{
+        transform: translateX(110vw);
+        opacity: 0;
+    }
+    15%{
+        transform: translateX(0vw);
+        opacity: 0.3;
+    }
+    to{
+        transform: translateX(0vw);
+        opacity: 1;
+    }
 }

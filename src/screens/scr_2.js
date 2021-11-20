@@ -54,7 +54,7 @@ import { compareArr } from "../tools/sort";
                return ()=>window.removeEventListener('scroll',callback)
         },[list,isLoading,stop])
       return (
-    <div className = 'main'>
+    <div className = 'main1'>
         <Table striped bordered hover size="sm">
          <thead className='btop-w'>
            <tr className = 'w-100 btop-w'>
