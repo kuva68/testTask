@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 
 
@@ -21,8 +21,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "/dist"),
-    
+    publicPath: "/dist/",
     filename: 'bundle.js',
+    static: './public',
   },
   module: {
     rules: [
@@ -40,8 +41,7 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-          
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
@@ -60,12 +60,7 @@ module.exports = {
       exclude: ['bundle.js'],
     }),
     
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
-    }),
+   
   
   ],
   optimization: {
