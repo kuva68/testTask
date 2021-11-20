@@ -8,7 +8,8 @@ const initialState = {
   errorMessage: '',
   newsArr:[],
   list: 1,
-  stop: false
+  stop: false,
+  
 }
 export const fetchNews = createAsyncThunk(
     'fetchNews',
@@ -28,7 +29,11 @@ export const NewsReduser = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchNews.fulfilled, (state, action) => {
      
-      return {...state,newsArr: [...state.newsArr,...action.payload],isLoading: false, errorMessage: '',list: state.list + 1}
+      return {...state,newsArr: [...state.newsArr,...action.payload],
+                                                  isLoading: false, 
+                                                  errorMessage: '',
+                                                  list: state.list + 1,
+                                                 }
      
     }),
     builder.addCase(fetchNews.pending, (state)=>{

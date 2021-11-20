@@ -1,6 +1,7 @@
 export const compareArr = {
-     '1': (a,b)=> { return a.time - b.time} ,
-     '2': (a,b)=> {return b.time - a.time },
+     '1': (a,b)=> {return b.time - a.time },
+     '2': (a,b)=> { return a.time - b.time} ,
+     
      '3': (a,b)=>{if(a.title > b.title) return 1
                   if(a.title < b.title) return -1
                   return 0 },

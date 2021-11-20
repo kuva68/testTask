@@ -92,7 +92,7 @@ import { compareArr } from "../tools/sort";
              <tr className = 'w-100'key={el.id+''+ i}>
                <td className = 'd-none d-sm-table-cell firstCol'>
                    <div className='maxH-3 d-flex justify-content-start align-items-center w-100'>
-                   {`${new Date(el.time).toString().slice(0,24)}`}
+                   {el.time_ago}
                    </div>
                 </td> 
                <td className = 'secondCol'colSpan='2'>
