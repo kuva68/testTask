@@ -50,21 +50,7 @@ module.exports = {
             loader: 'css-loader',
             options: { sourceMap: true },
           },
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: [
-                  [
-                    autoprefixer,
-                    {
-                      // Options
-                    },
-                  ],
-                ],
-              },
-            },
-          },
+         
           
         ],
       },

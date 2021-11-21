@@ -1,31 +1,23 @@
 const path = require("path");
 const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer =require('autoprefixer')
-
-
-
-
 
 module.exports = {
   devtool: false,
   mode: "production",
   entry: {
-    main: [
-      
+    main: [      
       './src/index.js',
-     
-    ],
+     ],
    
   },
   output: {
     filename: 'bundle.js',
      path: path.resolve(__dirname, 'dist'),
      clean: true,
-    
-  },
+    },
   module: {
     rules: [
       {
@@ -38,33 +30,11 @@ module.exports = {
           },
         }],
       },
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader,
-              "css-loader",
-              "style-loader",
-              {
-                loader: "postcss-loader",
-                options: {
-                  postcssOptions: {
-                    plugins: [
-                      [
-                        autoprefixer,
-                        {
-                          // Options
-                        },
-                      ],
-                    ],
-                  },
-                },
-              },
-      
+      {       
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        },
       ],
-      },
-      
-         
-      
-    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -75,15 +45,9 @@ module.exports = {
       filename: '[name].js.map',
       exclude: ['bundle.js'],
     }),
-    new MiniCssExtractPlugin(),
-    new MiniCssExtractPlugin()
+   
+    
   
   ],
-  optimization: {
-    minimizer: [
-      
-      new CssMinimizerPlugin()
-     
-    ],
-  },
+  
 };
