@@ -62,6 +62,8 @@
 }
 .btop-w{
     border-top-color: white;
+    top: -1px;
+    background-color: white
     
 }
 @keyframes routing1 {

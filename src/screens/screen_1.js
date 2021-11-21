@@ -57,7 +57,7 @@ import { compareArr } from "../tools/sort";
     <div className = 'main'>
        
         <Table striped bordered hover size="sm">
-         <thead className='btop-w'>
+         <thead className='btop-w position-sticky'>
            <tr className = 'w-100 btop-w'>
             <th className ='d-none d-sm-table-cell firstCol tableTitle'
                 onClick = {sortByDate}

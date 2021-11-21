@@ -1,8 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const autoprefixer =require('autoprefixer')
 
 
 
@@ -38,19 +39,31 @@ module.exports = {
         }],
       },
       {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            
-          },
-          
-         
-        ],
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader,
+              "css-loader",
+              "style-loader",
+              {
+                loader: "postcss-loader",
+                options: {
+                  postcssOptions: {
+                    plugins: [
+                      [
+                        autoprefixer,
+                        {
+                          // Options
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+      
+      ],
       },
+      
+         
+      
     ],
   },
   plugins: [
@@ -62,14 +75,14 @@ module.exports = {
       filename: '[name].js.map',
       exclude: ['bundle.js'],
     }),
-    
-   
+    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin()
   
   ],
   optimization: {
     minimizer: [
       
-     
+      new CssMinimizerPlugin()
      
     ],
   },

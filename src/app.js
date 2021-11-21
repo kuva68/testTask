@@ -10,6 +10,7 @@ import { fetchNewest } from "./redusers/newestReduser";
 import { useDispatch,useSelector } from "react-redux";
 import {setSortMode} from '../src/redusers/comonReduser'
 import Button from 'react-bootstrap/Button'
+import Navbar from 'react-bootstrap/Navbar'
    function App(){
        const dispatch = useDispatch()
        const list1 = useSelector((state)=>state.news.list)
@@ -28,20 +29,22 @@ useEffect(()=>{
     }
        return (
        
-    <div className = 'mainAppDiv'>             
-      <Nav variant="tabs"defaultActiveKey={key} >
-        <Nav.Item onClick={()=>setKey('1')}className='nav'>
-        <Nav.Link eventKey="1">News</Nav.Link>
-        </Nav.Item>
-        <Nav.Item iventKey='2' onClick={clickSecondTab}className='nav'>
-        <Nav.Link eventKey="2">Newest</Nav.Link>
-        </Nav.Item>
+    <div className = 'mainAppDiv pl-3'>  
+      
+       <Nav variant="tabs"defaultActiveKey={key} className='bg-gray-300'>
+          <Nav.Item onClick={()=>setKey('1')}className='nav'>
+             <Nav.Link eventKey="1" classname='ml-3'>News</Nav.Link>
+          </Nav.Item>
+          <Nav.Item iventKey='2' onClick={clickSecondTab}className='nav'>
+             <Nav.Link eventKey="2">Newest</Nav.Link>
+         </Nav.Item>
   
-    </Nav>
+      </Nav>
+    
                {key === '1' ? <NewsScreen/> : <NewestScreen/>}
                <Button variant="primary"
                        onClick={sortByDate}
-                       className = 'floatBtn d-sm-none'
+                       className = 'floatBtn d-sm-none rounded-circle d-flex justify-content-center align-items-center font-weight-lighter'
                        >
                           {`Date 
                           ${sortMode === '1'?'0~9':'9~0'}`}
