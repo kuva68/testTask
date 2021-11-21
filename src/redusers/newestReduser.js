@@ -14,7 +14,6 @@ export const fetchNewest = createAsyncThunk(
     'fetchNewest',
     async (n, thunkAPI) => {
       const response = await getHacker.newest(n)
-      console.log('=======fetchNewest resp',response)
       return response
     }
   )

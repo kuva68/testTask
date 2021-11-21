@@ -2,15 +2,17 @@ import React,{useEffect, useState, useRef} from "react";
 import Table from 'react-bootstrap/Table'
 import {useSelector,useDispatch} from 'react-redux'
 import Spinner from 'react-bootstrap/Spinner'
-import Button from 'react-bootstrap/Button'
+
 import {fetchNews,setStop} from '../redusers/newsReduser'
 import './screens.css'
+import {setSortMode} from '../redusers/comonReduser'
 import { compareArr } from "../tools/sort";
+
   export default function NewsScreen(){
       const footerRef = useRef(null)
       const dispatch = useDispatch()
-      const [sortMode,setSortMode] = useState('1')
       
+      const sortMode = useSelector((state)=>state.comon.sortMode)
       const stop = useSelector((state)=>state.news.stop)
       const isLoading = useSelector((state)=>{
           return state.news.isLoading
@@ -28,8 +30,8 @@ import { compareArr } from "../tools/sort";
         const fetchNewsArr = ()=>{
             dispatch(fetchNews(1))
         } 
-        const sortByDate =()=>{
-            setSortMode(sortMode === '1'? '2': '1')
+        const sortByDate = ()=>{
+          dispatch(setSortMode(sortMode === '1'? '2': '1'))
         }
      
         const fetchNewList = ()=>{
@@ -53,6 +55,7 @@ import { compareArr } from "../tools/sort";
         },[list,isLoading,stop])
       return (
     <div className = 'main'>
+       
         <Table striped bordered hover size="sm">
          <thead className='btop-w'>
            <tr className = 'w-100 btop-w'>
@@ -67,7 +70,7 @@ import { compareArr } from "../tools/sort";
                 </th>
             <th className = 'vw-35 secondCol tableTitle'
                 colSpan='2' 
-                onClick = {()=>setSortMode(sortMode === '3'? '4': '3')}>
+                onClick = {()=>dispatch(setSortMode(sortMode === '3'? '4': '3'))}>
                     Title
                     <div className=' d-flex sortDiv p-2'style={{flexDirection: sortMode==='3'?'column':''}}>
                         <span className='sortSpan'>a</span>
@@ -76,7 +79,7 @@ import { compareArr } from "../tools/sort";
             </th>
             <th className ='d-none d-sm-table-cell vw-40 secondCol tableTitle'
             colSpan='2' 
-            onClick = {()=>setSortMode(sortMode === '5'? '6': '5')}>
+            onClick = {()=>dispatch(setSortMode(sortMode === '5'? '6': '5'))}>
                 Domain
                 <div className=' d-flex sortDiv p-2'style={{flexDirection: sortMode==='5'?'column':''}}>
                         <span className='sortSpan'>a</span>
@@ -123,13 +126,7 @@ import { compareArr } from "../tools/sort";
              {isLoading &&<Spinner animation="grow" variant="primary" />}
              
                </div>
-               <Button variant="primary"
-                       onClick={sortByDate}
-                       className = 'floatBtn d-sm-none'
-                       >
-                          {`Date 
-                          ${sortMode === '1'?'0~9':'9~0'}`}
-                </Button>
+              
     </div>
       )
   }

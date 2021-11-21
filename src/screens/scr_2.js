@@ -6,13 +6,13 @@ import Button from 'react-bootstrap/Button'
 import {fetchNewest,setStop} from '../redusers/newestReduser'
 import './screens.css'
 import { compareArr } from "../tools/sort";
+import { setSortMode } from "../redusers/comonReduser";
+
   export default function NewestScreen(){
 
       const footerRef = useRef(null)
       const dispatch = useDispatch()
-      
-      const [sortMode,setSortMode] = useState('1')
-      
+      const sortMode = useSelector((state)=>state.comon.sortMode)
       const stop = useSelector((state)=>state.newest.stop)
       const isLoading = useSelector((state)=>{
           return state.newest.isLoading
@@ -31,9 +31,9 @@ import { compareArr } from "../tools/sort";
             dispatch(fetchNewest(1))
         } 
         const sortByDate =()=>{
-            setSortMode(sortMode === '1'? '2': '1')
+            dispatch(setSortMode(sortMode === '1'? '2': '1'))
         }
-        const [sortedArr,setSortedArr] = useState(newestArr)
+        
         const fetchNewList = ()=>{
             dispatch(setStop(true))
             dispatch(fetchNewest(list))
@@ -69,7 +69,7 @@ import { compareArr } from "../tools/sort";
                 </th>
             <th className = 'vw-35 secondCol tableTitle'
                 colSpan='2' 
-                onClick = {()=>setSortMode(sortMode === '3'? '4': '3')}>
+                onClick = {()=>dispatch(setSortMode(sortMode === '3'? '4': '3'))}>
                     Title
                     <div className=' d-flex sortDiv p-2'style={{flexDirection: sortMode==='3'?'column':''}}>
                         <span className='sortSpan'>a</span>
@@ -78,7 +78,7 @@ import { compareArr } from "../tools/sort";
             </th>
             <th className ='d-none d-sm-table-cell vw-40 secondCol tableTitle'
             colSpan='2' 
-            onClick = {()=>setSortMode(sortMode === '5'? '6': '5')}>
+            onClick = {()=>dispatch(setSortMode(sortMode === '5'? '6': '5'))}>
                 Domain
                 <div className=' d-flex sortDiv p-2'style={{flexDirection: sortMode==='5'?'column':''}}>
                         <span className='sortSpan'>a</span>
@@ -124,12 +124,6 @@ import { compareArr } from "../tools/sort";
              {isLoading &&<Spinner animation="grow" variant="primary" />}
              
                </div>
-               <Button variant="primary"
-                       onClick={sortByDate}
-                       className = 'floatBtn d-sm-none'
-                       >
-                          {`Date 
-                          ${sortMode === '1'?'0~9':'9~0'}`}
-                </Button>
+               
     </div>
       )}
